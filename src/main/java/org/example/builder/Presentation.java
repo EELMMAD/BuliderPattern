@@ -12,17 +12,10 @@ public class Presentation {   //This class is composite because the presentation
     }
 
     //here need to specify target format and for that we need an Enum
-    public void export(PresentationFormat format) {
-        if (format == PresentationFormat.PDF) {
-            PdfDocument pdf = new PdfDocument();
-            for (Slide slide : slides) {
-                pdf.addPage(slide.getText());
-            }
-        } else if (format == PresentationFormat.MOVIE) {
-            Movie movie = new Movie();
-            for (Slide slide : slides) {
-                movie.addFrame(slide.getText(), 3);
-            }
-        }
+    public void export(PresentationBuilder builder) {
+        builder.addSlide(new Slide("Copyright"));
+       for(Slide slide: slides){
+           builder.addSlide(slide);
+       }
     }
 }
